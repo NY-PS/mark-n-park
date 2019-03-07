@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>595725732398-bumj10bj2oioavftv428t1cc0160v50s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.595725732398-bumj10bj2oioavftv428t1cc0160v50s</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA5Bp2YgWMjbUot2OoP57tQnkSt4duMvSc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>595725732398</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.marknpark</string>
+	<key>PROJECT_ID</key>
+	<string>mark-n-park</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mark-n-park.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:595725732398:ios:b862fa6e3ea27fd6</string>
+	<key>DATABASE_URL</key>
+	<string>https://mark-n-park.firebaseio.com</string>
+</dict>
+</plist>
