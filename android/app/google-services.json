@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "595725732398",
+    "firebase_url": "https://mark-n-park.firebaseio.com",
+    "project_id": "mark-n-park",
+    "storage_bucket": "mark-n-park.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595725732398:android:d1d0baa36d359654",
+        "android_client_info": {
+          "package_name": "com.marknpark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595725732398-s01f1acm7capk59s22rksnfidgk73sfc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marknpark",
+            "certificate_hash": "b95a8f3f6e5e6da19bc08d76a5c1b90769ab4017"
+          }
+        },
+        {
+          "client_id": "595725732398-5pt879mnthapub1bnk7tiaasu4pdbi92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl-lQJ3hiM8NeXbU9j0wyc0IK_dj9YE5s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595725732398-5pt879mnthapub1bnk7tiaasu4pdbi92.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "595725732398-bumj10bj2oioavftv428t1cc0160v50s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.marknpark"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
