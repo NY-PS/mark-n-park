@@ -1,21 +1,81 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import UsersMap from './UsersMap';
 
-class Home extends React.Component {
+type Props = {};
+export default class App extends Component<Props> {
+
+  state = {
+    userLocation: null,
+    meters: []
+  }
+
+  getUserLocationHandler = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        userLocation: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
+          longitudeDelta: 0.0421
+        }
+      });
+      console.log(position);
+    }, err => console.log(err));
+  }
+
+  getMetersHandler = () => {
+    fetch('https://firestore.googleapis.com/v1beta1/projects/mark-n-park/databases/(default)/documents/smart_meters')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const metersArray = [];
+        console.log((responseJson));
+        for(const key in responseJson){
+          let meterLocation = {};
+          for(i=0; i< responseJson[key].length; i++){
+            meterLocation = responseJson[key][i]["fields"]["location"]["geoPointValue"];
+            console.log(meterLocation);
+            metersArray.push({
+              latitude: meterLocation.latitude,
+              longitude: meterLocation.longitude,
+              id: i
+            });
+          }
+        }
+        this.setState({
+          meters: metersArray
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#fff"
-        }}
-      >
-        <Text>Home!</Text>
+      <View style={styles.container}>
+        <View style={{marginBottom: 20}}>
+          <Button title="Get Smart Meters" onPress={this.getMetersHandler} />
+        </View>
+        <UsersMap userLocation={this.state.userLocation} meters={this.state.meters}/>
       </View>
     );
   }
 }
 
-export default Home;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
