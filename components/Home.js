@@ -6,12 +6,6 @@ import MapView, { Marker} from 'react-native-maps';
 type Props = {};
 export default class App extends Component<Props> {
 
-  // state = {
-  //   latitude: 
-  //   meters: [],
-  //   error: null
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -44,30 +38,6 @@ export default class App extends Component<Props> {
     );
   }
 
-  // getUserLocationHandler = () => {
-  //   navigator.geolocation.getCurrentPosition(position => {
-  //     this.setState({
-  //       userLocation: {
-  //         latitude: position.coords.latitude,
-  //         longitude: position.coords.longitude,
-  //         latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
-  //         longitudeDelta: 0.0421
-  //       }
-  //     });
-  //     console.log(position);
-  //   }, err => console.log(err));
-  //   { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 };
-  // }
-
-  // return fetch('https://facebook.github.io/react-native/movies.json')
-  //   .then((response) => response.json())
-  //   .then((responseJson) => {
-  //     return responseJson.movies;
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-
   getMetersHandler = () => {
     fetch('https://firestore.googleapis.com/v1beta1/projects/mark-n-park/databases/(default)/documents/smart_meters')
       .then((response) => response.json())
@@ -96,7 +66,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{marginBottom: 20}}>
+        <View style={{marginBottom: -100}}>
           <Button title="Get Smart Meters" onPress={this.getMetersHandler} />
         </View>
         <UsersMap userLocation={this.state.userLocation} meters={this.state.meters}/>
