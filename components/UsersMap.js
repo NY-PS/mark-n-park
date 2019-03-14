@@ -17,8 +17,8 @@ const usersMap = props => {
             longitude: -123.2794,
             latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
             longitudeDelta: 0.0421,
-          }}
-          region={props.userLocation}
+        }}
+        region={props.userLocation}
         style={styles.map}> 
         {userLocationMarker}
         {metersMarkers}
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   mapContainer: {
     width: '100%',
     height: '100%',
-    marginTop: 0
+    marginBottom: 100
   },
   map: {
     width: '100%',

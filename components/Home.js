@@ -68,13 +68,18 @@ export default class App extends Component<Props> {
     this.setState({ destination });
   }
 
+  submitSearch() {
+    this.setState({userLocation: {latitude: 44.5638, longitude: -123.2794, latitudeDelta: 0.0622, longitudeDelta: 0.0421}});
+    this.getMetersHandler();
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Button style={{marginTop: 100}} title="Get Smart Meters" onPress={this.getMetersHandler} />
-        
         <UsersMap userLocation={this.state.userLocation} meters={this.state.meters}/>
-        <TextInput style={styles.destinationInput} placeholder="Enter destination..." value={this.state.destination} onChangeText={destination => this.onChangeDestination(destination)}/>
+        <View style={styles.searchBarContainer}>
+          <TextInput style={styles.destinationInput} placeholder="Search for a meter" value={this.state.destination} onSubmitEditing={this.getMetersHandler} onChangeText={destination => this.onChangeDestination(destination)}/>
+        </View>
       </View>
     );
   }
@@ -83,19 +88,26 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    marginTop: 50
+    height: '100%',
+    width: '100%'
+  },
+  searchBarContainer: {
+    width: '100%',
+    position: "absolute",
+    bottom: 500,
+    alignItems: "center"
   },
   destinationInput: {
     height: 40,
+    width: '90%',
     borderWidth: 0.5,
-    bottom: 500,
     marginLeft: 5,
     marginRight: 5,
     backgroundColor: "white",
     padding: 5,
-    position: "absolute"
+    borderRadius: 5
   }
 });
