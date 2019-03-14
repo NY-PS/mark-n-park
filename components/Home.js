@@ -1,28 +1,72 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import UsersMap from './UsersMap';
+import MapView, { Marker} from 'react-native-maps'; 
 
 type Props = {};
 export default class App extends Component<Props> {
 
-  state = {
-    userLocation: null,
-    meters: []
+  // state = {
+  //   latitude: 
+  //   meters: [],
+  //   error: null
+  // }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userLocation: {
+        latitude: 0,
+        longitude: 0,
+        latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
+        longitudeDelta: 0.0421
+      },
+      meters: [],
+      error: null
+    }
   }
 
-  getUserLocationHandler = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.setState({
-        userLocation: {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
-          longitudeDelta: 0.0421
-        }
-      });
-      console.log(position);
-    }, err => console.log(err));
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({
+          userLocation: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
+            longitudeDelta: 0.0421
+          },
+          error: null
+        });
+      }, 
+      error => this.setState({ error: error.message}),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 }
+    );
   }
+
+  // getUserLocationHandler = () => {
+  //   navigator.geolocation.getCurrentPosition(position => {
+  //     this.setState({
+  //       userLocation: {
+  //         latitude: position.coords.latitude,
+  //         longitude: position.coords.longitude,
+  //         latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
+  //         longitudeDelta: 0.0421
+  //       }
+  //     });
+  //     console.log(position);
+  //   }, err => console.log(err));
+  //   { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 };
+  // }
+
+  // return fetch('https://facebook.github.io/react-native/movies.json')
+  //   .then((response) => response.json())
+  //   .then((responseJson) => {
+  //     return responseJson.movies;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 
   getMetersHandler = () => {
     fetch('https://firestore.googleapis.com/v1beta1/projects/mark-n-park/databases/(default)/documents/smart_meters')
