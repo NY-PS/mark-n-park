@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import UsersMap from './UsersMap';
 import MapView, { Marker} from 'react-native-maps'; 
 
@@ -15,6 +15,7 @@ export default class App extends Component<Props> {
         latitudeDelta: 0.0622, //this and longDelta determine how zoomed in it is on the GUI
         longitudeDelta: 0.0421
       },
+      destination: "",
       meters: [],
       error: null
     }
@@ -63,13 +64,17 @@ export default class App extends Component<Props> {
       .catch(err => console.log(err));
   };
 
+  onChangeDestination(destination) {
+    this.setState({ destination });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={{marginBottom: -100}}>
-          <Button title="Get Smart Meters" onPress={this.getMetersHandler} />
-        </View>
+        <Button style={{marginTop: 100}} title="Get Smart Meters" onPress={this.getMetersHandler} />
+        
         <UsersMap userLocation={this.state.userLocation} meters={this.state.meters}/>
+        <TextInput style={styles.destinationInput} placeholder="Enter destination..." value={this.state.destination} onChangeText={destination => this.onChangeDestination(destination)}/>
       </View>
     );
   }
@@ -81,15 +86,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    marginTop: 50
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  destinationInput: {
+    height: 40,
+    borderWidth: 0.5,
+    bottom: 500,
+    marginLeft: 5,
+    marginRight: 5,
+    backgroundColor: "white",
+    padding: 5,
+    position: "absolute"
+  }
 });
